@@ -137,6 +137,31 @@ npm start
   }
   ```
 
+## Rotas de Produtos
+
+### 4. Obter Todos os Produtos
+
+- **Método**: `GET`
+- **Rota**: `/api/products`
+- **Descrição**: Retorna todos os produtos disponíveis.
+- **Resposta**:
+  ```json
+  {
+    "products": [
+      {
+        "name": "Produto 1",
+        "detail": "Detalhes do produto 1",
+        "price": 100,
+        "hero": "imagem1.jpg",
+        "info": "Informações adicionais",
+        "offer": "Oferta especial",
+        "image": "http://placehold.it/300x300/999/CCC"
+      },
+      ...
+    ]
+  }
+  ```
+
 ## Erros Comuns
 
 - **400 Bad Request**: Quando os parâmetros obrigatórios não são fornecidos.
