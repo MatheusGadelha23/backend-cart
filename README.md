@@ -32,6 +32,21 @@ Antes de começar, você precisará ter instalado em sua máquina:
 
    Você pode usar o arquivo `.env.example` como referência.
 
+## Executando o Projeto
+
+Para iniciar o servidor em modo de desenvolvimento, use o seguinte comando:
+
+```bash
+npm run dev
+```
+
+Para compilar o projeto e iniciar o servidor em produção, use:
+
+```bash
+npm run build
+npm start
+```
+
 ## Estrutura do Projeto
 
 - `src/`: Contém o código-fonte do projeto.
