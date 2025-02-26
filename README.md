@@ -1,4 +1,4 @@
-# Backend Cart
+# API do Carrinho de Compras
 
 Este é um projeto de backend para gerenciamento de um carrinho de compras.
 
@@ -13,10 +13,10 @@ Antes de começar, você precisará ter instalado em sua máquina:
 
 1. Clone o repositório:
 
-   <!-- ```bash
-   git clone
-   cd seu-repositorio
-   ``` -->
+   ```bash
+   git clone https://github.com/MatheusGadelha23/backend-cart.git
+   cd backend-cart
+   ```
 
 2. Instale as dependências:
 
@@ -38,18 +38,92 @@ Antes de começar, você precisará ter instalado em sua máquina:
   - `controllers/`: Controladores para gerenciar as rotas.
   - `services/`: Serviços para lógica de negócios.
   - `models/`: Modelos de dados.
+  - `routes/`: Definições de rotas.
 
-## Executando o Projeto
+## Rotas da API
 
-Para iniciar o servidor em modo de desenvolvimento, use o seguinte comando:
+### 1. Obter Carrinho
 
-```bash
-npm run dev
-```
+- **Método**: `GET`
+- **Rota**: `/api/cart`
+- **Descrição**: Retorna o conteúdo atual do carrinho.
+- **Resposta**:
+  ```json
+  {
+    "cart": [
+      {
+        "name": "Product 1",
+        "detail": "Lorem ipsum dolor sit amet",
+        "price": 99,
+        "info": "OMG This just came out today!",
+        "hero": "imagem1.jpg",
+        "offer": "This is the latest and greatest product from Derp corp.",
+        "image": "http://placehold.it/300x300/999/CCC"
+      },
+      ...
+    ]
+  }
+  ```
 
-Para compilar o projeto e iniciar o servidor em produção, use:
+### 2. Adicionar Produtos ao Carrinho
 
-```bash
-npm run build
-npm start
-```
+- **Método**: `POST`
+- **Rota**: `/api/cart`
+- **Parâmetros**:
+  - **Body**:
+    ```json
+    {
+      "products": [
+        {
+          "name": "Produto 1",
+          "detail": "Detalhes do produto 1",
+          "price": 100,
+          "hero": "imagem1.jpg",
+          "info": "Informações adicionais",
+          "offer": "Oferta especial",
+          "image": "http://placehold.it/300x300/777/CCC"
+        },
+        {
+          "name": "Produto 2",
+          "detail": "Detalhes do produto 2",
+          "price": 150,
+          "offer": "Oferta especial",
+          "image": "http://placehold.it/300x300/999/CCC"
+        }
+      ]
+    }
+    ```
+- **Descrição**: Adiciona um ou mais produtos ao carrinho.
+- **Resposta**:
+  ```json
+  {
+    "message": "Produto(s) adicionado(s) ao carrinho!",
+    "cart": [ ... ]
+  }
+  ```
+
+### 3. Remover Produtos do Carrinho
+
+- **Método**: `DELETE`
+- **Rota**: `/api/cart`
+- **Parâmetros**:
+  - **Body**:
+    ```json
+    {
+      "names": ["Produto 1", "Produto 2"]
+    }
+    ```
+- **Descrição**: Remove um ou mais produtos do carrinho com base nos nomes fornecidos.
+- **Resposta**:
+  ```json
+  {
+    "message": "Produtos removidos do carrinho.",
+    "cart": [ ... ]
+  }
+  ```
+
+## Erros Comuns
+
+- **400 Bad Request**: Quando os parâmetros obrigatórios não são fornecidos.
+- **404 Not Found**: Quando um produto não é encontrado no carrinho.
+- **500 Internal Server Error**: Quando ocorre um erro inesperado no servidor.
